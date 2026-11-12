@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoHogar - Sistema de Ahorro de Energía</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>EcoHogar</h1>
+        <p>Gestiona el consumo eléctrico de tus electrodomésticos</p>
+    </header>
+
+    <div class="summary">
+        <div class="summary-card">
+            <div class="num" id="count-on">0</div>
+            <div class="lbl">Conectados</div>
+        </div>
+        <div class="summary-card">
+            <div class="num" id="count-off">0</div>
+            <div class="lbl">Desconectados</div>
+        </div>
+        <div class="summary-card">
+            <div class="num" id="count-total">0</div>
+            <div class="lbl">Total</div>
+        </div>
+    </div>
+
+    <main id="appliance-list"></main>
+
+    <button class="fab" id="fab-btn" aria-label="Agregar o quitar electrodomésticos">+</button>
+
+    <!-- Menu sheet: add/remove -->
+    <div class="overlay" id="menu-overlay">
+        <div class="sheet">
+            <h2>Gestionar electrodomésticos <button class="close-btn" id="close-menu">✕</button></h2>
+            <div class="add-form">
+                <input type="text" id="new-name" placeholder="Nombre del electrodoméstico" maxlength="30">
+                <select id="new-icon" aria-label="Icono del electrodoméstico">
+                    <option value=""></option>
+                    <option value=</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+                <button id="add-btn">Agregar</button>
+            </div>
+
+            <div class="manage-list" id="manage-list"></div>
+        </div>
+    </div>
+
+    <!-- Warning modal for protected appliances (nevera) -->
+    <div class="overlay center" id="warning-overlay">
+        <div class="sheet">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-title">No se recomienda desconectar</div>
+            <div class="warning-text" id="warning-text-content">
+                Este electrodoméstico debe permanecer siempre conectado por seguridad y conservación. Desconectarlo
+                puede dañar tus alimentos o el equipo.
+            </div>
+            <div class="warning-actions">
+                <button class="btn-cancel" id="warning-cancel">Mantener conectado</button>
+                <button class="btn-confirm" id="warning-confirm">Desconectar igual</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

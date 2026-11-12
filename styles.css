@@ -1,0 +1,374 @@
+:root {
+    --primary: #10b981;
+    --primary-dark: #059669;
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --radius: 16px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding: 20px 16px 100px 16px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    font-family: 'Beauties', cursive;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 4px;
+}
+
+/* Tarjetas de Resumen */
+.summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    background: var(--card-bg);
+    padding: 16px 12px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.summary-card .num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.summary-card .lbl {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* Lista de Electrodomésticos */
+#appliance-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.appliance-item {
+    background: var(--card-bg);
+    padding: 16px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+}
+
+.appliance-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.appliance-icon {
+    font-size: 2rem;
+    background: #eef2ff;
+    padding: 8px;
+    border-radius: 12px;
+}
+
+.appliance-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.appliance-status {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.appliance-status.on {
+    color: var(--primary-dark);
+}
+
+.appliance-status.off {
+    color: var(--text-muted);
+}
+
+/* Switch Toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--primary);
+}
+
+input:checked+.slider:before {
+    transform: translateX(24px);
+}
+
+/* Botón Flotante (FAB) */
+.fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    font-size: 2rem;
+    border: none;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 10;
+}
+
+.fab:active {
+    transform: scale(0.95);
+}
+
+/* Modal y Sheets Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: flex-end;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.overlay.active {
+    display: flex;
+}
+
+.overlay.center {
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.sheet {
+    background: var(--card-bg);
+    border-radius: 24px 24px 0 0;
+    padding: 24px;
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.overlay.center .sheet {
+    border-radius: var(--radius);
+    max-width: 400px;
+}
+
+.sheet h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+/* Formulario de Agregar */
+.add-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.add-form input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.add-form select {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.add-form button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Lista de gestión (Eliminar) */
+.manage-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.btn-delete {
+    background: #fee2e2;
+    color: var(--danger);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+/* Advertencia Nevera */
+.warning-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.warning-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.warning-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.warning-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-cancel,
+.btn-confirm {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-confirm {
+    background: #f3f4f6;
+    color: var(--text-main);
+    .fab {
+            position: fixed;
+            /* Se queda fijo en la pantalla aunque des despliegue */
+            bottom: 24px;
+            /* Distancia desde el borde inferior */
+            right: 24px;
+            /* Distancia desde el borde derecho (cambia a left si lo quieres a la izquierda) */
+            width: 56px;
+            /* Ancho del botón */
+            height: 56px;
+            /* Alto del botón */
+            border-radius: 50%;
+            /* '50%' hace que el botón sea un círculo perfecto */
+            background-color: #10b981;
+            /* Color verde principal */
+            color: white;
+            /* Color del '+' */
+            font-size: 2rem;
+            /* Tamaño del '+' */
+            border: none;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+            /* Sombra para dar efecto flotante */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            /* Asegura que quede por encima de los demás elementos */
+        }
+}
